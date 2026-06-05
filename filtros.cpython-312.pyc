@@ -1,0 +1,38 @@
+import os
+
+import streamlit as st
+
+st.title("Equipo del Proyecto")
+st.divider()
+
+
+def mostrar_foto(ruta, ancho=200):
+    """Muestra la imagen si existe y es válida; si no, un marcador."""
+    if os.path.exists(ruta) and os.path.getsize(ruta) > 0:
+        try:
+            st.image(ruta, width=ancho)
+            return
+        except Exception:
+            pass
+    st.markdown(
+        f'<div style="width:{ancho}px;height:{ancho}px;border-radius:8px;'
+        'background:#1e293b;display:flex;align-items:center;justify-content:center;'
+        'color:#64748b;font-size:0.85rem;text-align:center;border:1px dashed #334155;">'
+        'Foto no disponible</div>',
+        unsafe_allow_html=True,
+    )
+
+
+col1, col2 = st.columns(2)
+with col1:
+    mostrar_foto("assets/carolina.png")
+    st.subheader("Carolina Bechara")
+    st.markdown("Comerciante Internacional — Área Comercial")
+    st.caption('carobechara15@gmail.com')
+
+
+with col2:
+    mostrar_foto("assets/santiago.png")
+    st.subheader("Santiago Cano")
+    st.markdown("Comerciante Internacional — Área Comercial")
+    st.caption('santiagocano@gmail.com')
